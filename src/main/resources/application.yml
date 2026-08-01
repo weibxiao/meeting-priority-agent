@@ -1,0 +1,50 @@
+server:
+  port: 8080
+
+#spring:
+ # application:
+  #  name: meeting-priority-agent
+  #ai:
+   # anthropic:
+    #  api-key: ${ANTHROPIC_API_KEY}
+     # chat:
+      #  options:
+       #   model: claude-sonnet-5
+        #  temperature: 0.3
+
+
+spring:
+  ai:
+    model:
+      chat: ollama
+      embedding: ollama
+
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        options:
+          model: llama3.2
+          temperature: 0.3
+      embedding:
+        options:
+          model: nomic-embed-text-v2-moe
+
+
+google:
+  calendar:
+    application-name: Meeting Priority Agent
+    # Path to the OAuth client JSON downloaded from Google Cloud Console.
+    # Use "classpath:credentials.json" (file placed in src/main/resources) or an absolute file path.
+    credentials-file: classpath:credentials.json
+    # Where the OAuth token cache is stored after the first, one-time browser authorization.
+    tokens-directory: tokens
+    # Which calendar to read. "primary" = the signed-in user's main calendar.
+    calendar-id: primary
+    # Time zone used to compute "today". Defaults to the JVM's system zone if omitted.
+    # zone-id: America/New_York
+
+meeting-agent:
+  # Keywords (case-insensitive, substring match against title + description) that mark a
+  # meeting as a "department meeting" regardless of headcount. Adjust to match how your
+  # org names these meetings.
+  department-keywords: department,all-hands,all hands,town hall,org meeting,team sync,weekly sync,standup,stand-up
