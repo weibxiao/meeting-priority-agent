@@ -2,7 +2,10 @@
 
 A Spring Boot + Spring AI agent that reads **today's Google Calendar events**, classifies
 each meeting into a priority tier using fixed rules, and (optionally) asks an LLM (Claude,
-via Spring AI's Anthropic starter) to turn that into a short daily briefing.
+via Spring AI's Anthropic starter) to turn that into a short daily briefing. Any LLM can be 
+used as long as Spring AI support.
+
+The setting in application.ymal is using Ollama llama3.2 (free).
 
 ## Priority rules
 
@@ -20,6 +23,9 @@ e.g. match on a specific calendar, organizer, or recurring-event ID — in
 `MeetingPriorityService`).
 
 ## Project layout
+
+Please create Google calendar credential in Google cloud console. There is no credential saved
+credential.json under the resource folder.
 
 ```
 src/main/java/com/example/meetingagent/
@@ -98,6 +104,7 @@ Example response shape from `/briefing`:
   "briefing": "• 9:00–9:30 1:1 with Sam — highest priority, no gap before your 10am...\n..."
 }
 ```
+The order of the meetings is sorted by LLM.
 
 ## Versions used
 
