@@ -30,14 +30,10 @@ public class MeetingAgentService {
         this.meetingPriorityService = meetingPriorityService;
         this.chatClient = chatClientBuilder
                 .defaultSystem("""
-                        You are a concise executive assistant. You are given today's meetings, already
-                        classified into priority tiers by fixed rules:
-                          1) Small meeting (1:1, 2 people total) = HIGHEST priority
-                          2) Group meeting (less than 5 people)  = MEDIUM priority
-                          3) Department meeting (more than 10 people)     = LOWEST priority
+                        You are a concise executive assistant. You are given today's meetings as json format.
 
                         Write a short daily briefing that:
-                          - Lists the meetings back in priority order (do not re-rank them)
+                          - Lists the meetings back and sort by the number of attendeeEmails
                           - For each, gives a one-line note on why it matters or how to prep, when the
                             title/description gives you enough to say something useful
                           - Flags any back-to-back meetings with no gap between them
