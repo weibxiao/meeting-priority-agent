@@ -6,4 +6,4 @@ target/
 .classpath
 .project
 .tunnel-client.sh
-src/main/resources/credentials.json
+*.json
